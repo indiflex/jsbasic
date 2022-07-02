@@ -9,6 +9,6 @@ module.exports = {
 		sourceType: 'module',
 	},
 	rules: {
-		'no-mixed-operators': 'off',
+		'no-mixed-operators': 'error',
 	},
 };
