@@ -1,0 +1,30 @@
+{
+	"name": "jsbasic",
+	"version": "1.0.0",
+	"description": "js 기본기",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/indiflex/jsbasic.git"
+	},
+	"keywords": [
+		"JS",
+		"Basic"
+	],
+	"author": "Jade",
+	"license": "Apache-2.0",
+	"bugs": {
+		"url": "https://github.com/indiflex/jsbasic/issues"
+	},
+	"homepage": "https://github.com/indiflex/jsbasic#readme",
+	"devDependencies": {
+		"eslint": "^8.19.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"nodemon": "^2.0.18",
+		"prettier": "^2.7.1"
+	}
+}
