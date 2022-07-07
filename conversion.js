@@ -123,3 +123,43 @@ console.log(user.hasOwnProperty('age'));
 
 const arr = [1, 2, 3];
 for (let a of arr) console.log(a); // iterable only
+
+console.log('----------------------- P.36 문제 1');
+for (let i = 2; i < 10; i += 1) {
+	const r = Math.sqrt(i).toFixed(3);
+	console.log(Math.round(r * 1000) / 1000);
+	// if (r - parseInt(r)) console.log(i, r);
+}
+
+console.log('----------------------- P.36 문제 2');
+const today = new Date();
+switch (today.getDay()) {
+	case 0:
+		console.log('일요일');
+		break;
+	case 1:
+		console.log('월요일');
+		break;
+	case 2:
+		console.log('화요일');
+		break;
+	case 3:
+		console.log('수요일');
+		break;
+	case 4:
+		console.log('목요일');
+		break;
+	case 5:
+		console.log('금요일');
+		break;
+	case 6:
+		console.log('토요일');
+		break;
+}
+
+const weekNum = today.getDay();
+// const weekName = '일월화수목금토일'.charAt(weekNum);
+const weekName = '일월화수목금토일'[weekNum];
+console.log(`오늘은 ${weekName}요일입니다`);
+
+console.log(`오늘은 ${'일월화수목금토'[new Date().getDay()]}요일입니다`);
