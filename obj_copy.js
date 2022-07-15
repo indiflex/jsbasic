@@ -4,6 +4,16 @@ newKim.addr = 'Daegu';
 console.log(kim.addr !== newKim.addr, kim, newKim); // true면 통과!
 
 function copyObject(obj) {
+	const copyObj = {};
+	for (let k in obj) {
+		// console.log(k, obj[k]);
+		copyObj[k] = obj[k];
+	}
+
+	return copyObj;
+}
+
+function copyObject3(obj) {
 	// const str = JSON.stringify(obj, null, '  ');
 	const str = JSON.stringify(obj);
 	console.log(str);
@@ -43,14 +53,4 @@ function copyObject3(obj) {
 	console.log('----------------------');
 	// console.log(Object.fromEntries(entries));
 	return Object.fromEntries(entries);
-}
-
-function copyObject2(obj) {
-	const copyObj = {};
-	for (let k in obj) {
-		// console.log(k, obj[k]);
-		copyObj[k] = obj[k];
-	}
-
-	return copyObj;
 }
