@@ -6,23 +6,53 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .container {
+      margin: 5rem;
+    }
+  </style>
 </head>
 
 <body>
-  <button id="btn1">Btn1</button>
-  <button id="btn2">Btn2</button>
+  <div class="container">
+    <div>
+      <button id="btn1">국어 수업</button>
+      <span id="sp1">요일을 선택하세요</span>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <button id="btn2">수학 수업</button>
+      <span id="sp2">요일을 선택하세요</span>
+    </div>
+  </div>
 
   <script>
+    const WEEKS = ['일', '월', '화', '수', '목', '금', '토'];
+
+    const getNextWeek = (() => {
+      let widx = -1;
+      return () => {
+        widx += 1; // side-effect!
+        if (widx >= WEEKS.length) widx = 0;
+        return WEEKS[widx];
+      };
+    })();
+
     window.addEventListener('load', () => {
+
       const $btn1 = document.getElementById('btn1');
+      const $sp1 = document.getElementById('sp1');
       const $btn2 = document.getElementById('btn2');
+      const $sp2 = document.getElementById('sp2');
 
       $btn1.addEventListener('click', function (event) {
         console.log('Click11!!!!!', this, event.target); // button
+        $sp1.innerText = getNextWeek();
       });
 
       $btn2.addEventListener('click', (event) => {
         console.log('Click22!!!!!', this, event.target); // window
+        $sp2.innerText = getNextWeek();
       });
     });
   </script>

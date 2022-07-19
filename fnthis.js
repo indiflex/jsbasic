@@ -55,6 +55,7 @@ lucy.bark2(); // ?
 console.log('type=', typeof dog); // ?
 console.log('type=', typeof lucy); // ?
 
+console.log('=============================================')
 const Cat = (name) => { // Object
   this.name = name;
   console.log('CAT>>', this, new.target);
@@ -76,3 +77,4 @@ cat.barkCat2(); // ?
 console.log('type=', typeof cat); // ? 
 
 // cf. arrow function's this (p.52)
+// 
