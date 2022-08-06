@@ -29,12 +29,77 @@
   <script>
     const WEEKS = ['일', '월', '화', '수', '목', '금', '토'];
 
-    const getNextWeek = (() => {
+    // const getNextWeek = (() => {
+    //   let widx = -1;
+    //   return () => {
+    //     widx += 1; // side-effect!
+    //     if (widx >= WEEKS.length) widx = 0;
+    //     return WEEKS[widx];
+    //   };
+    // })();
+
+    // 1. 가장 즉흥적 
+    const getNextWeek1 = () => {
       let widx = -1;
       return () => {
-        widx += 1; // side-effect!
+        widx += 1;
         if (widx >= WEEKS.length) widx = 0;
         return WEEKS[widx];
+      };
+    };
+
+    // 2. DOM 전달
+    const getNextWeek2 = (() => {
+      return ($sp) => {
+        const curr = $sp.innerText.trim().replace('요일', '');
+        console.log($sp.innerText.trim(), curr, WEEKS.indexOf(curr))
+        const currIdx = WEEKS.indexOf(curr);
+        const w = (currIdx + 1) >= WEEKS.length ? WEEKS[0] : WEEKS[currIdx + 1];
+        $sp.innerText = `${w}요일`;
+      };
+    })();
+
+    // 3. 현재 값을 전달
+    const getNextWeek3 = (() => {
+      return (curr) => {
+        // console.log(curr, WEEKS.indexOf(curr))
+        const currIdx = WEEKS.indexOf(curr);
+        return (currIdx + 1) >= WEEKS.length ? WEEKS[0] : WEEKS[currIdx + 1];
+      };
+    })();
+
+    // 4. Object 관리 (과목 전달)
+    const getNextWeek4 = (() => {
+      const idxObj = {};  // {국어: -1, 수학: 0, 과학}
+      return (sbj) => {
+        // console.log(curr, WEEKS.indexOf(curr))
+        if (!idxObj.hasOwnProperty(sbj)) {
+          idxObj[sbj] = 0;
+        } else {
+          idxObj[sbj] += 1
+          if (idxObj[sbj] >= WEEKS.length)
+            idxObj[sbj] = 0;
+        }
+
+        return WEEKS[idxObj[sbj]];
+      };
+    })();
+
+    // 5. caller 
+    const getNextWeek5 = (function () {
+      const idxObj = {};  // {국어: -1, 수학: 0, 과학}
+      return function wn() {
+        const sbj = wn.caller.name; // caller
+        console.log('sbj=', sbj);
+        if (!idxObj.hasOwnProperty(sbj)) {
+          idxObj[sbj] = 0;
+        } else {
+          idxObj[sbj] += 1
+          if (idxObj[sbj] >= WEEKS.length)
+            idxObj[sbj] = 0;
+        }
+
+        return WEEKS[idxObj[sbj]];
       };
     })();
 
@@ -45,16 +110,46 @@
       const $btn2 = document.getElementById('btn2');
       const $sp2 = document.getElementById('sp2');
 
-      $btn1.addEventListener('click', function (event) {
-        console.log('Click11!!!!!', this, event.target); // button
-        $sp1.innerText = getNextWeek();
+      // const f국어 = getNextWeek1(); // -1
+      $btn1.addEventListener('click', function 국어(event) { // 국어
+        // $sp1.innerText = f국어();
+        // getNextWeek2($sp1);
+        // $sp1.innerText = getNextWeek3($sp1.innerText);
+        // $sp1.innerText = getNextWeek4('국어');
+        $sp1.innerText = getNextWeek5();
       });
 
-      $btn2.addEventListener('click', (event) => {
-        console.log('Click22!!!!!', this, event.target); // window
-        $sp2.innerText = getNextWeek();
+      // const f수학 = getNextWeek1(); // -1
+      $btn2.addEventListener('click', 수학 = (event) => { // 수학
+        // $sp2.innerText = f수학();
+        // getNextWeek2($sp2);
+        // $sp2.innerText = getNextWeek3($sp2.innerText);
+        // $sp2.innerText = getNextWeek4('수학');
+        $sp2.innerText = getNextWeek5();
+
+        ff(flast);
+        const ff = f => {
+          dsfjaslfdas
+          asdfdsafs
+          sadfdsaff
+          f(1, f3);
+        }
       });
     });
+
+
+    // function f() {
+    //   console.log('f.name::>>', f.name);
+    //   console.log('arguments::>>', arguments);
+    //   console.log('f.caller::>>', f.caller.name);
+    // }
+
+    // function outer() {
+    //   // f(1, 2, 3);
+    //   getNextWeek5();
+    // }
+
+    // outer();
   </script>
 </body>
 
