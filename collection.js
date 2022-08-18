@@ -35,6 +35,35 @@ class Collection {
 		return this.#arr.length;
 	}
 
+	// [Symbol.iterator]() {
+	// 	return this.#arr.values();
+	// }
+
+	[Symbol.iterator]() {
+		let idx = -1;
+		// let done = false;
+		return {
+			next: () => {
+				idx += 1;
+				// done = done || ...
+				// done ||= idx > this.#arr.length - 1;
+				// return { value: this.#arr[idx], done };
+
+				return { value: this.#arr[idx], done: !this.#arr[idx] };
+			},
+		};
+	}
+
+	*[Symbol.iterator]() {
+		for (let idx = 0; idx < this.#arr.length; idx += 1) {
+			yield this.#arr[idx];
+		}
+	}
+
+	iterator() {
+		return this[Symbol.iterator]();
+	}
+
 	toArray() {
 		return [...this.#arr];
 	}
@@ -76,7 +105,25 @@ const queue = new Queue([11, 22]);
 queue.enqueue(33); // 추가하기
 console.log('deq>>', queue.dequeue()); // 추가한지 가장 오래된 - 먼저 들어간 - 하나 꺼내기
 queue.enqueue(44);
-// console.log('speek=', stack.peek);
-// console.log('qpeek=', queue.peek);
 stack.print();
 queue.print();
+
+console.log('===============================');
+console.log([...stack], [...queue]);
+for (const s of stack) console.log(s);
+for (const q of queue) console.log(q);
+
+const itStack = stack[Symbol.iterator]();
+console.log(itStack.next());
+console.log(itStack.next());
+console.log(itStack.next());
+console.log(itStack.next());
+console.log(itStack.next());
+console.log(itStack.next());
+
+const itQueue = queue.iterator();
+console.log(itQueue.next());
+console.log(itQueue.next());
+console.log(itQueue.next());
+console.log(itQueue.next());
+console.log(itQueue.next());
