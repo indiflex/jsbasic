@@ -18,15 +18,46 @@
     <div>
       <button id="btn1">국어 수업</button>
       <span id="sp1">요일을 선택하세요</span>
+      <!-- <span id="dummy">dummy</span> -->
     </div>
 
     <div style="margin-top: 2rem;">
       <button id="btn2">수학 수업</button>
       <span id="sp2">요일을 선택하세요</span>
     </div>
+
+    <div style="margin-top: 2rem;">
+      <input type="text" id="str" placeholder="search...">
+    </div>
   </div>
 
   <script>
+    class Dummy {
+      constructor() {
+        this.date = new Date();
+      }
+    }
+
+    const darr = [];
+    for (let i = 0; i < 100; i += 1)
+      darr.push(new Dummy());
+
+    // const dmap = new Map(darr.map(da => [da, da]));
+    const dmap = new WeakMap(darr.map(da => [da, da]));
+    // console.log('ent>>', dmap.entries())
+
+    darr.length = 2;
+
+    const set = new Set();
+    set.add(1);
+    set.add(2);
+    const hong = { id: 1, name: 'Hong', dept: 1 };
+    const kim = { id: 2, name: 'Kim', dept: 2 };
+    const wset = new WeakSet();
+    wset.add(hong);
+    wset.add(kim);
+
+
     const WEEKS = ['일', '월', '화', '수', '목', '금', '토'];
 
     // const getNextWeek = (() => {
@@ -90,7 +121,7 @@
       const idxObj = {};  // {국어: -1, 수학: 0, 과학}
       return function wn() {
         const sbj = wn.caller.name; // caller
-        console.log('sbj=', sbj);
+        // console.log('sbj=', sbj);
         if (!idxObj.hasOwnProperty(sbj)) {
           idxObj[sbj] = 0;
         } else {
@@ -103,20 +134,62 @@
       };
     })();
 
+    const debounce = (cb, delay) => {
+      let timer;
+      return (...args) => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(cb, delay, ...args);
+      };
+    };
+
+    const throttle = (cb, delay) => {
+      let timer;
+      return (...args) => {
+        if (timer) return;
+        timer = setTimeout(() => {
+          cb(...args);
+          timer = null;
+        }, delay);
+      };
+    };
+
     window.addEventListener('load', () => {
+      const dbncStr = debounce((event) => {
+        console.log('dbncStr>>');
+        console.log(new Date().toISOString(), 'search>>', event.target.value);
+      }, 500);
+
+      document.getElementById('str').addEventListener('input', evt => {
+        dbncStr(evt);
+      });
+
+      // document.getElementById('str').oninput = debounce((event) => {
+      //   console.log(new Date().toISOString(), 'search>>', event.target.value)
+      // }, 500);
+
+      const $dummy = document.getElementById('dummy');
+      // console.log(';;>>', dmap.size)
+      // $dummy.innerText = dmap.get(darr[0]);
 
       const $btn1 = document.getElementById('btn1');
       const $sp1 = document.getElementById('sp1');
       const $btn2 = document.getElementById('btn2');
       const $sp2 = document.getElementById('sp2');
 
+      const dbnc = debounce(() => {
+        console.log('dbnc>>');
+        $sp1.innerText = getNextWeek5()
+      }, 1000);
+
+      const thrt = throttle(() => $sp2.innerText = getNextWeek5(), 500)
       // const f국어 = getNextWeek1(); // -1
       $btn1.addEventListener('click', function 국어(event) { // 국어
         // $sp1.innerText = f국어();
         // getNextWeek2($sp1);
         // $sp1.innerText = getNextWeek3($sp1.innerText);
         // $sp1.innerText = getNextWeek4('국어');
-        $sp1.innerText = getNextWeek5();
+        // $sp1.innerText = getNextWeek5();
+        dbnc();
       });
 
       // const f수학 = getNextWeek1(); // -1
@@ -125,15 +198,9 @@
         // getNextWeek2($sp2);
         // $sp2.innerText = getNextWeek3($sp2.innerText);
         // $sp2.innerText = getNextWeek4('수학');
-        $sp2.innerText = getNextWeek5();
+        // $sp2.innerText = getNextWeek5();
 
-        ff(flast);
-        const ff = f => {
-          dsfjaslfdas
-          asdfdsafs
-          sadfdsaff
-          f(1, f3);
-        }
+        thrt();
       });
     });
 
