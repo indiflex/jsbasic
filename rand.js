@@ -1,5 +1,4 @@
-const rand = (s, e) => s + Math.floor((e - s + 1) * Math.random());
-
+import { rand } from './utils/math-utils.js';
 console.log(rand(1, 10));
 console.log(rand(0, 9));
 console.log(rand(100, 200));

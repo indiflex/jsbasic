@@ -1,3 +1,5 @@
+import { deepCopy as copyArrayOrObject } from './utils/utils.js';
+
 const kim = {
 	nid: 3,
 	arr: [1, 2, 3, { aid: 1 }, [10, 20]],
@@ -5,18 +7,6 @@ const kim = {
 	fn() {
 		console.log('fn=', this.nid);
 	},
-};
-
-const copyArrayOrObject = arrobj => {
-	const copyObj = Array.isArray(arrobj) ? [] : {};
-	for (let k in arrobj) {
-		const tmpObj = arrobj[k];
-		console.log(k, tmpObj, typeof tmpObj);
-		if (typeof tmpObj === 'object') copyObj[k] = copyArrayOrObject(tmpObj);
-		else copyObj[k] = arrobj[k];
-	}
-
-	return copyObj;
 };
 
 const newKim = copyArrayOrObject(kim);

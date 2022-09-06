@@ -1,3 +1,4 @@
+import { deepCopy as deepCopyObject } from './utils/utils.js';
 const kim = {
 	nid: 3,
 	addr: 'Pusan',
@@ -25,20 +26,6 @@ const copyArray = a => {
 // arr2[2][0] = 1000;
 // console.log('rrr>>', arr, arr2);
 // return;
-
-const deepCopyObject = obj => {
-	const copyObj = {};
-	for (let k in obj) {
-		const tmpObj = obj[k];
-		// console.log(k, tmpObj, typeof tmpObj);
-		// if (Array.isArray(tmpObj)) copyObj[k] = [...tmpObj];
-		if (Array.isArray(tmpObj)) copyObj[k] = copyArray(tmpObj);
-		else if (typeof tmpObj === 'object') copyObj[k] = deepCopyObject(tmpObj);
-		else copyObj[k] = obj[k];
-	}
-
-	return copyObj;
-};
 
 const newKim = deepCopyObject(kim);
 newKim.addr = 'Daegu';
@@ -84,27 +71,4 @@ function copyObject3(obj) {
 	}
 
 	return copyObj;
-}
-
-function copyObject3(obj) {
-	const str = JSON.stringify(obj);
-	// console.log('str=', str);
-	// const arr = str.replace('{', '').replace('}', '').split(',');
-	const arr = str.replace(/\{|\}/g, '').split(',');
-	console.log(arr);
-	const entries = [];
-	for (let x of arr) {
-		// console.log(x.split(':'));
-		const tmpArr = x.split(':');
-		console.log(tmpArr, tmpArr[0].replace(/"/g, ''));
-		tmpArr[0] = tmpArr[0].replace(/"/g, '');
-		tmpArr[1] = tmpArr[1].includes('"')
-			? tmpArr[1].replace(/"/g, '')
-			: Number(tmpArr[1]);
-		entries.push(tmpArr);
-	}
-	console.log('entries=', entries);
-	console.log('----------------------');
-	// console.log(Object.fromEntries(entries));
-	return Object.fromEntries(entries);
 }

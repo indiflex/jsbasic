@@ -13,6 +13,8 @@ console.log(d802.format('MMM MMMM Do D DD'));
 
 const d0 = new Date(0);
 console.log(moment(d0).tz('America/Los_Angeles').format('LLL'));
+console.log(moment().format('YYYY-MM-DD HH:mm:ss (dd)'));
+console.log(moment().format('YYYY-MM-DD HH:mm:ss:SSS dddd'));
 console.log(moment().format('YYYY-MM-DD HH:mm:ss (dddd)'));
 console.log(moment().format('a h:mm'));
 console.log(moment().startOf('M'));
@@ -21,3 +23,7 @@ console.log(moment().startOf('Q'));
 console.log(moment().endOf('Q'));
 console.log(moment().diff(moment('1973-10-05'), 'M'));
 console.log(moment(new Date(0)).fromNow());
+
+const m = moment('2022-09-05 13:05:02.160');
+console.log(m.format('YYYY-MM-DD HH:mm:ss:SSS dddd'));
+console.log(m.format('YYYY-MM-DD H:mm:ss:SSS dddd'));

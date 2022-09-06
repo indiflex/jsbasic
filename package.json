@@ -20,6 +20,7 @@
 		"url": "https://github.com/indiflex/jsbasic/issues"
 	},
 	"homepage": "https://github.com/indiflex/jsbasic#readme",
+	"type": "module",
 	"devDependencies": {
 		"eslint": "^8.19.0",
 		"eslint-config-prettier": "^8.5.0",
