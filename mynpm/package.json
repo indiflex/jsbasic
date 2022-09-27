@@ -1,0 +1,26 @@
+{
+  "name": "@indiflex/utils",
+  "version": "1.0.4",
+  "description": "indiflex utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indiflex/jsbasic.git"
+  },
+  "keywords": [
+    "array",
+    "date",
+    "math",
+    "etc"
+  ],
+  "author": "indiflex, Inc",
+  "type": "module",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indiflex/jsbasic/issues"
+  },
+  "homepage": "https://github.com/indiflex/jsbasic#readme"
+}

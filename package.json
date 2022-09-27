@@ -4,6 +4,8 @@
 	"description": "js 기본기",
 	"main": "index.js",
 	"scripts": {
+		"build_babel": "babel html/*.js utils/*.js -w -d html/dist/js",
+		"build": "webpack -w",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -22,14 +24,24 @@
 	"homepage": "https://github.com/indiflex/jsbasic#readme",
 	"type": "module",
 	"devDependencies": {
+		"@babel/cli": "^7.18.10",
+		"@babel/core": "^7.19.0",
+		"@babel/preset-env": "^7.19.0",
+		"babel-loader": "^8.2.5",
 		"eslint": "^8.19.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"nodemon": "^2.0.19",
-		"prettier": "^2.7.1"
+		"prettier": "^2.7.1",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0"
 	},
 	"dependencies": {
+		"@babel/polyfill": "^7.12.1",
+		"@indiflex/utils": "^1.0.4",
+		"co": "^4.6.0",
 		"moment": "^2.29.4",
-		"moment-timezone": "^0.5.37"
+		"moment-timezone": "^0.5.37",
+		"node-fetch": "^3.2.10"
 	}
 }

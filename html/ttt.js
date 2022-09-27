@@ -6,6 +6,9 @@ class Dummy {
 	}
 }
 
+const X = 3 ** 3;
+console.log('X=', X);
+
 const darr = [];
 for (let i = 0; i < 100; i += 1) darr.push(new Dummy());
 

@@ -9,7 +9,7 @@ const eqArray = (arr1, arr2) => {
 };
 
 const assertArray = (arr1, arr2) => {
-	if (eqArray(arr1, arr2)) console.log(arr1);
+	if (eqArray(arr1, arr2)) console.log('통!', arr1);
 	else console.log(arr1, arr2, '==>', '불통!!');
 };
 
