@@ -15,3 +15,10 @@ const copyArrayAndObject = function (obj) {
 	}
 	return newObj;
 };
+
+const arr = [1, 2, 3, 4, 5];
+const f1 = v => v ** 2;
+const f2 = v => Math.sqrt(v);
+const f3 = v => v ** 3;
+const result = [f1, f2, f3].reduce((pre, f) => pre.map(f), arr);
+console.log(result);

@@ -10,7 +10,7 @@ const getNextWeek = () => {
 	};
 };
 
-// let cnt = 0;
+\// let cnt = 0;
 // const intl = setInterval(() => {
 // 	console.log('call', cnt, getNextWeek());
 // 	if ((cnt += 1) === 7) clearInterval(intl);
