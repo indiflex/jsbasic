@@ -14,7 +14,7 @@ function deepCopyObject(obj) {
 		const v = obj[k];
 		console.log(k, '=', v, typeof v, Array.isArray(v));
 		if (Array.isArray(v)) ret[k] = copyArray(v);
-		else if (typeof v === 'objct') ret[k] = deepCopyObject(v);
+		else if (typeof v === 'object') ret[k] = deepCopyObject(v);
 		else ret[k] = obj[k]; // ret['nm'] = obj['nm']
 	}
 	return ret;
@@ -34,4 +34,4 @@ newKim.arr[0] = 100;
 newKim.arr[3].aid = 200;
 newKim.arr[4][1] = 300;
 newKim.oo.addr.city = 'Daejeon';
-// console.log(kim, newKim); // oo와 arr이 다르면 통과!
+console.log(kim, newKim); // oo와 arr이 다르면 통과!
